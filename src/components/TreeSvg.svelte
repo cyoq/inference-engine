@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as d3 from 'd3';
 	import treeData from '../data/tree-example';
-	import type { TreeNode } from '../types';
+	import { NodeType, type TreeNode } from '../types';
 
 	export let chartWidth: number = 660;
 	export let chartHeight: number = 550;
@@ -83,7 +83,7 @@
 			>
 				<!-- Adds a shape to the node -->
 				<rect
-					rx="5"
+					rx={node.data.type === NodeType.Conclusion ? 0 : 20}
 					width={rectWidth}
 					height={rectHeight}
 					fill="none"
