@@ -5,9 +5,11 @@
 
 	export let chartWidth: number = 660;
 	export let chartHeight: number = 550;
+	export let rectWidth: number = 60;
+	export let rectHeight: number = 30;
 
 	// set the dimensions and margins of the diagram
-	const margin = { top: 20, right: 90, bottom: 30, left: 90 };
+	const margin = { top: 20, right: 90, bottom: 40, left: 90 };
 	$: width = chartWidth - margin.left - margin.right;
 	$: height = chartHeight - margin.top - margin.bottom;
 
@@ -16,6 +18,10 @@
 	$: root = treeMap(nodes);
 
 	function pathLine<T>(node: d3.HierarchyPointNode<T>): string {
+		// First point goes from a child
+		// Second point is a control point from a child
+		// Third point is a control point from a parent
+		// Fourth point is a point to a parent if he exists
 		return (
 			'M' +
 			node.x +
@@ -28,11 +34,11 @@
 			', ' +
 			(node.x + (node.parent ? node.parent.x : 0)) / 2 +
 			' ' +
-			(node.parent ? node.parent.y : 0) +
+			(node.parent ? node.parent.y + rectHeight : 0) +
 			', ' +
 			(node.parent ? node.parent.x : 0) +
 			' ' +
-			(node.parent ? node.parent.y : 0)
+			(node.parent ? node.parent.y + rectHeight : 0)
 		);
 	}
 </script>
@@ -48,18 +54,15 @@
 		{#each root.descendants() as node}
 			<g
 				class="node {node.children ? 'node-internal' : 'node-leaf'}"
-				transform="translate({node.x},{node.y})"
+				transform="translate({node.x - rectWidth / 2},{node.y})"
 			>
-				<!-- Adds a circle to the node -->
-				<circle r="10" stroke="black" />
+				<!-- Adds a shape to the node -->
+				<rect width={rectWidth} height={rectHeight} fill="none" stroke="black" stroke-width="1" />
 
 				<!-- Adds the text to the node -->
 				<!-- We use relative coordinates because every node is translated absolutely already -->
-				<text
-					dy="0.35em"
-					x={node.children ? -15 : -40}
-					y={node.children && node.depth !== 0 ? -10 : 15}
-					text-anchor={node.children ? 'end' : 'start'}>{node.data.name ?? 'Undefined'}</text
+				<text dy="0.35em" x={rectWidth / 2} y={rectHeight / 2} text-anchor="middle"
+					>{node.data.name ?? 'Undefined'}</text
 				>
 			</g>
 		{/each}
@@ -67,13 +70,13 @@
 </svg>
 
 <style>
-	.node circle {
-		stroke: steelblue;
+	.node rect {
+		stroke: blueviolet;
 		stroke-width: 3px;
 	}
 
 	.node text {
-		font: 16px sans-serif;
+		font: 12px sans-serif;
 	}
 
 	.link {
