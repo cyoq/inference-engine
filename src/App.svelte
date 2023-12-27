@@ -7,7 +7,7 @@
 	let height = 400;
 </script>
 
-<main>
+<main bind:clientWidth={width}>
 	<h1>{text}</h1>
 	<TreeSvg chartWidth={width} chartHeight={height} />
 </main>
