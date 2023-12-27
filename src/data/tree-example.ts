@@ -2,46 +2,54 @@ import { NodeType, type TreeNode } from '../types';
 
 const treeData: TreeNode = {
 	name: 'Outlook',
+	edge: null,
 	type: NodeType.Condition,
-	children: {
-		Sunny: {
+	children: [
+		{
 			name: 'Humidity',
+			edge: 'Sunny',
 			type: NodeType.Condition,
-			children: {
-				Normal: {
+			children: [
+				{
 					name: 'Play?: Yes',
+					edge: 'Normal',
 					type: NodeType.Conclusion,
 					children: null
 				},
-				High: {
+				{
 					name: 'Play?: No',
+					edge: 'High',
 					type: NodeType.Conclusion,
 					children: null
 				}
-			}
+			]
 		},
-		Overcast: {
+		{
 			name: 'Play?: Yes',
+			edge: 'Overcast',
 			type: NodeType.Conclusion,
 			children: null
 		},
-		Rainy: {
+		{
 			name: 'Windy',
+			edge: 'Rainy',
 			type: NodeType.Condition,
-			children: {
-				False: {
+			children: [
+				{
 					name: 'Play?: Yes',
+					edge: 'False',
 					type: NodeType.Conclusion,
 					children: null
 				},
-				True: {
+				{
 					name: 'Play?: No',
+					edge: 'True',
 					type: NodeType.Conclusion,
 					children: null
 				}
-			}
+			]
 		}
-	}
+	]
 };
 
 export default treeData;

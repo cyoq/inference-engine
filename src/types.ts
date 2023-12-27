@@ -6,5 +6,6 @@ export enum NodeType {
 export type TreeNode = {
 	name: string;
 	type: NodeType;
-	children: { [key: string]: TreeNode } | null;
+	edge: string | null;
+	children: TreeNode[] | null;
 };
