@@ -51,11 +51,6 @@
 				transform="translate({node.x},{node.y})"
 			>
 				<!-- Adds a circle to the node -->
-				<!-- <circle
-					r={node.data.value}
-					stroke={node.data.type}
-					fill={node.data.level}
-				/> -->
 				<circle r="10" stroke="black" />
 
 				<!-- Adds the text to the node -->
