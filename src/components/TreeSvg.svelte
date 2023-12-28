@@ -17,13 +17,13 @@
   let nodes = d3.hierarchy(treeData, (d) => d.children);
   $: root = treeMap(nodes);
 
-  let edgeNames: SVGGraphicsElement[] = [];
+  let linkNames: SVGGraphicsElement[] = [];
   let bBoxes: DOMRect[] = [];
   $: {
-    bBoxes = edgeNames.map((e) => e.getBBox());
+    bBoxes = linkNames.map((e) => e.getBBox());
   }
 
-  function pathLine<T>(node: d3.HierarchyPointNode<T>): string {
+  function pathLine<T>(node: d3.HierarchyPointNode<T>, rectHeight: number): string {
     // First point goes from a child
     // Second point is a control point from a child
     // Third point is a control point from a parent
@@ -53,21 +53,28 @@
   <g transform="translate({margin.left},{margin.top})">
     <!-- Adds the links between the nodes -->
     {#each root.descendants().slice(1) as link, i}
+      {@const linkPosition = {
+        x: (link.x + (link.parent ? link.parent.x : 0)) / 2,
+        y: (link.y + (link.parent ? link.parent.y : 0)) / 2
+      }}
+
       <g class="node-edge">
-        <path class="link" style="stroke: black;" d={pathLine(link)} />
+        <path class="link" style="stroke: black;" d={pathLine(link, rectHeight)} />
+        <!-- Add a background for link text -->
         {#if bBoxes.length !== 0}
           <rect
-            x={(link.x + (link.parent ? link.parent.x : 0)) / 2 - bBoxes[i].width / 2}
-            y={(link.y + (link.parent ? link.parent.y : 0)) / 2 - bBoxes[i].height / 2}
+            x={linkPosition.x - bBoxes[i].width / 2}
+            y={linkPosition.y - bBoxes[i].height / 2}
             width={bBoxes[i].width}
             height={bBoxes[i].height}
             fill="#E6EBE0"
           />
         {/if}
+
         <text
-          bind:this={edgeNames[i]}
-          x={(link.x + (link.parent ? link.parent.x : 0)) / 2}
-          y={(link.y + (link.parent ? link.parent.y : 0)) / 2}
+          bind:this={linkNames[i]}
+          x={linkPosition.x}
+          y={linkPosition.y}
           text-anchor="middle"
           fill="black"
           dy="0.35em">{link.data.edge ?? 'Undefined'}</text
@@ -113,7 +120,6 @@
 
   .node-edge text {
     font: 12px sans-serif;
-    color: #ed6a5a;
   }
   .link {
     fill: none;
