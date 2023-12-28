@@ -1,20 +1,23 @@
 <script lang="ts">
   import TreeSvg from './components/TreeSvg.svelte';
 
-  const text = 'Hello World';
-
   let width = 600;
   let height = 400;
 </script>
 
 <main bind:clientWidth={width}>
-  <h1>{text}</h1>
+  <h1>Inference engine 💡</h1>
 
   <span
-    >This is a cool <pre>SVG</pre>
-    graph</span
+    >The decision graph for <pre>forward</pre>
+    and
+    <pre>backward</pre>
+    chaining execution</span
   >
+
   <TreeSvg chartWidth={width} chartHeight={height} />
+
+  <footer>Check the code on the <a href="">GitHub</a> 😉</footer>
 </main>
 
 <style>
