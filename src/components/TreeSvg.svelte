@@ -110,7 +110,7 @@
 
 <style>
   .node rect {
-    stroke: #995d81;
+    stroke: var(--chinese-violet);
     stroke-width: 3px;
   }
 

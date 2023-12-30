@@ -1,7 +1,7 @@
 <script lang="ts">
   let question = 'Is it outlook?';
   let answers = ['Sunny', 'Overcast', 'Rainy', 'Doom'];
-  let answerColors = ['#995D81', '#6689A1', '#FFB7A0', '#6BAA75'];
+  let answerColors = ['--chinese-violet', '--air-force-blue', '--asparagus', '--melon'];
   let conclusion = 'Play?: Yes';
 
   let productionRules = [
@@ -32,7 +32,7 @@
     <pre>Answer:</pre>
 
     {#each answers as answer, i}
-      <button style="background-color: {answerColors[i % answerColors.length]}">
+      <button style="background-color: var({answerColors[i % answerColors.length]})">
         {answer}
       </button>
     {/each}

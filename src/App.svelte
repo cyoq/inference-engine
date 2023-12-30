@@ -38,6 +38,10 @@
     --orange: #ffb7a0;
     --pale-orange: #fccab9;
     --border-grey: #afafaf;
+    --chinese-violet: #995d81;
+    --air-force-blue: #6689a1;
+    --melon: #ffb7a0;
+    --asparagus: #6baa75;
   }
 
   main {
