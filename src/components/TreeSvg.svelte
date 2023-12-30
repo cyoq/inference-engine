@@ -2,6 +2,7 @@
   import * as d3 from 'd3';
   import treeData from '../data/tree-example';
   import { NodeType, type TreeNode } from '../types';
+  import Tooltip from './Tooltip.svelte';
 
   export let chartWidth: number = 660;
   export let chartHeight: number = 550;
@@ -104,6 +105,8 @@
           >{node.data.name ?? 'Undefined'}</text
         >
       </g>
+
+      <Tooltip x={node.x} y={node.y} />
     {/each}
   </g>
 </svg>
