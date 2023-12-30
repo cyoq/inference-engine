@@ -30,23 +30,14 @@
 
   <Tabs {items} />
 
-  <!-- <div class="controls">
-    <div class="controls-inner">
-      {#each spots as spot, index}
-      <button>
-        Hi
-        <span style="background-color: coral"></span>
-      </button>
-      {/each}
-    </div>
-  </div> -->
-
   <footer>Check the code on the <a href="https://example.com">GitHub</a> 😉</footer>
 </main>
 
 <style>
   :root {
-    --orange-color: #ffb7a0;
+    --orange: #ffb7a0;
+    --pale-orange: #fccab9;
+    --border-grey: #afafaf;
   }
 
   main {
@@ -77,56 +68,12 @@
     padding: 1px 6px;
     display: inline;
     margin: 0;
-    background: var(--orange-color);
+    background: var(--orange);
     border-radius: 3px;
   }
 
   a {
     color: #ff3e00;
     text-decoration: inherit;
-  }
-
-  .controls {
-    display: flex;
-    justify-content: center;
-  }
-  .controls-inner {
-    display: flex;
-    margin: 0 auto;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-  .controls-inner > * + * {
-    border-left: 1px solid var(--border-color);
-  }
-  button {
-    cursor: pointer;
-    font-weight: 600;
-    justify-content: center;
-    padding: 1rem 1rem;
-    text-align: center;
-    border: none;
-    white-space: nowrap;
-    margin: 0;
-    position: relative;
-    background: transparent;
-    user-select: none;
-  }
-  button span {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: 0.2s ease-out;
-  }
-  button:hover span {
-    opacity: 0.7;
-  }
-  button.active {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
   }
 </style>

@@ -27,7 +27,7 @@
   .box {
     margin-bottom: 10px;
     padding: 40px;
-    border: 1px solid var(--orange-color);
+    border: 1px solid var(--orange);
     border-radius: 0 0 0.5rem 0.5rem;
   }
   ul {
@@ -42,7 +42,7 @@
     margin-bottom: -1px;
   }
   button {
-    border: 1px solid #afafaf;
+    border: 1px solid var(--border-grey);
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     display: block;
@@ -55,6 +55,6 @@
   }
   li.active > button {
     background-color: #fff;
-    border-color: var(--orange-color);
+    border-color: var(--orange);
   }
 </style>
