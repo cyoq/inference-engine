@@ -3,13 +3,14 @@
   import ForwardChaining from './components/ForwardChaining.svelte';
   import Tabs from './components/Tabs.svelte';
   import TreeSvg from './components/TreeSvg.svelte';
+  import type { TabItem } from './types';
 
   let width = 600;
   let height = 400;
 
-  let items = [
-    { label: 'Forward', value: 1, component: ForwardChaining },
-    { label: 'Backward', value: 2, component: BackwardChaining }
+  let items: TabItem[] = [
+    { label: 'Forward', index: 1, component: ForwardChaining },
+    { label: 'Backward', index: 2, component: BackwardChaining }
   ];
 </script>
 
@@ -44,6 +45,10 @@
 </main>
 
 <style>
+  :root {
+    --orange-color: #ffb7a0;
+  }
+
   main {
     text-align: center;
     margin: 0 auto;
@@ -58,16 +63,21 @@
   }
 
   h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
   }
 
-  pre {
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  :global(pre) {
     padding: 1px 6px;
     display: inline;
     margin: 0;
-    background: #ffb7a0;
+    background: var(--orange-color);
     border-radius: 3px;
   }
 

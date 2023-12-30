@@ -1,27 +1,22 @@
 <script lang="ts">
-  import type { ComponentType } from 'svelte';
-
-  type TabItem = {
-    label: string;
-    value: number;
-    component: ComponentType;
-  };
+  import type { TabItem } from '../types';
 
   export let items: TabItem[] = [];
-  export let activeTabValue = 1;
+  export let activeTabIndex = 1;
 
-  const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
+  const handleClick = (tabValue: number) => () => (activeTabIndex = tabValue);
 </script>
 
 <ul>
   {#each items as item}
-    <li class={activeTabValue === item.value ? 'active' : ''}>
-      <span on:click={handleClick(item.value)}>{item.label}</span>
+    <li class={activeTabIndex === item.index ? 'active' : ''}>
+      <button on:click={handleClick(item.index)}>{item.label}</button>
     </li>
   {/each}
 </ul>
+
 {#each items as item}
-  {#if activeTabValue == item.value}
+  {#if activeTabIndex == item.index}
     <div class="box">
       <svelte:component this={item.component} />
     </div>
@@ -32,9 +27,8 @@
   .box {
     margin-bottom: 10px;
     padding: 40px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--orange-color);
     border-radius: 0 0 0.5rem 0.5rem;
-    border-top: 0;
   }
   ul {
     display: flex;
@@ -47,23 +41,20 @@
   li {
     margin-bottom: -1px;
   }
-
-  span {
-    border: 1px solid transparent;
+  button {
+    border: 1px solid #afafaf;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     display: block;
     padding: 0.5rem 1rem;
     cursor: pointer;
   }
-
-  span:hover {
-    border-color: #e9ecef #e9ecef #dee2e6;
+  button:hover {
+    /* Button default hover color */
+    border-color: #e9ecef;
   }
-
-  li.active > span {
-    color: #495057;
+  li.active > button {
     background-color: #fff;
-    border-color: #dee2e6 #dee2e6 #fff;
+    border-color: var(--orange-color);
   }
 </style>
