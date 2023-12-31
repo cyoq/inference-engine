@@ -56,7 +56,6 @@
     min-height: 100vh;
     background: #f0f0f0;
     font-family: sans-serif;
-    --border-color: #999;
   }
 
   h1 {
