@@ -8,7 +8,7 @@
 <div class="container">
   <span>
     Forward chaining helps to <pre>sequentially</pre>
-    get to the
+    with facts and data get to the
     <pre>conclusions</pre>
     .
   </span>
