@@ -13,6 +13,7 @@ export type ProductionRule = {
 export type TreeNode = {
   name: string;
   type: NodeType;
+  prompt: string | null;
   edge: string | null;
   children: TreeNode[] | null;
 };
