@@ -9,21 +9,27 @@ function createForwardInference() {
     currentNode: fwInference.currentNode(),
     visitedNodes: fwInference.getVisitedNodes(),
     answers: fwInference.getEdges(),
-    productionRules: fwInference.getProductionRules()
+    productionRules: fwInference.getProductionRules(),
+    hasInferenceStarted: false
   });
 
   return {
     subscribe,
+    startInference: () => {
+      update((o) => ({
+        ...o,
+        hasInferenceStarted: true
+      }));
+    },
     next: (edge: string) => {
       fwInference.next(edge);
-      update((_) => {
-        return {
-          currentNode: fwInference.currentNode(),
-          visitedNodes: fwInference.getVisitedNodes(),
-          answers: fwInference.getEdges(),
-          productionRules: fwInference.getProductionRules()
-        };
-      });
+      update((_) => ({
+        currentNode: fwInference.currentNode(),
+        visitedNodes: fwInference.getVisitedNodes(),
+        answers: fwInference.getEdges(),
+        productionRules: fwInference.getProductionRules(),
+        hasInferenceStarted: true
+      }));
     },
     reset: () => {
       fwInference = new ForwardInference(treeData);
@@ -31,7 +37,8 @@ function createForwardInference() {
         currentNode: fwInference.currentNode(),
         visitedNodes: fwInference.getVisitedNodes(),
         answers: fwInference.getEdges(),
-        productionRules: fwInference.getProductionRules()
+        productionRules: fwInference.getProductionRules(),
+        hasInferenceStarted: false
       });
     }
   };
