@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition';
   import type { TabItem } from '../types';
 
   export let items: TabItem[] = [];
@@ -17,7 +18,7 @@
 
 {#each items as item}
   {#if activeTabIndex == item.index}
-    <div class="box">
+    <div class="box" in:fade>
       <svelte:component this={item.component} />
     </div>
   {/if}
