@@ -39,7 +39,7 @@
   </div>
 
   {#if $backwardInference.hasInferenceStarted}
-    <div class="rules">
+    <div class="rules" in:fade out:fade>
       <h2>Production rules</h2>
       {#each $backwardInference.productionRules as rule}
         <div class="rule" in:fade>
