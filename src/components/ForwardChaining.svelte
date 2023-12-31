@@ -27,14 +27,14 @@
   </div>
 
   {#if $forwardInference.hasInferenceStarted}
-    <div class="question" in:fade out:fade>
+    <div class="question" in:fade>
       <pre>Question:</pre>
       {$forwardInference.currentNode.name}?
     </div>
   {/if}
 
   {#if $forwardInference.hasInferenceStarted && ($forwardInference.answers ?? []).length > 0}
-    <div class="answer" in:fade out:fade>
+    <div class="answer" in:fade>
       <pre>Answer:</pre>
 
       {#each $forwardInference.answers ?? [] as answer, i}
@@ -49,7 +49,7 @@
   {/if}
 
   {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.type === NodeType.Conclusion}
-    <div class="conclusion" in:fade out:fade>
+    <div class="conclusion" in:fade>
       <pre>Conclusion:</pre>
       {$forwardInference.currentNode.name}
     </div>
@@ -59,7 +59,7 @@
     <div class="rules">
       <h2>Production rules</h2>
       {#each $forwardInference.productionRules as rule}
-        <div class="rule" in:fade out:fade>
+        <div class="rule" in:fade>
           <b>IF</b>
           {rule.facts.map((f) => `${f.name} = ${f.value}`).join(' AND ')}
           <b>THEN</b>

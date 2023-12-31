@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition';
+
   const rectWidth = 60;
   const rectHeight = 20;
 
@@ -6,7 +8,11 @@
   export let y: number;
 </script>
 
-<g class="chart-tooltip" transform="translate({x - rectWidth * 2}, {y})">
+<g
+  class="chart-tooltip"
+  transform="translate({x - rectWidth * 2}, {y})"
+  in:fade={{ duration: 500 }}
+>
   <rect width={rectWidth} height={rectHeight} fill="#f0f0f0" />
   <text dy="0.35em" x={rectWidth / 2} y={rectHeight / 2} text-anchor="middle">Current</text>
   <polygon
@@ -25,9 +31,6 @@
     background: white;
     /* Allows not to hover on the element itself  */
     pointer-events: none;
-    transition:
-      top 300ms ease,
-      left 300ms ease;
   }
 
   .chart-tooltip rect {

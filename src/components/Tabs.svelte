@@ -1,11 +1,15 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
   import type { TabItem } from '../types';
+  import { forwardInference } from '../store';
 
   export let items: TabItem[] = [];
   export let activeTabIndex = 1;
 
-  const handleClick = (tabValue: number) => () => (activeTabIndex = tabValue);
+  const handleClick = (tabValue: number) => () => {
+    forwardInference.reset();
+    activeTabIndex = tabValue;
+  };
 </script>
 
 <ul>
