@@ -1,9 +1,14 @@
 import type { ComponentType } from 'svelte';
 
 export enum NodeType {
-  Conclusion = 'conclusion',
-  Condition = 'condition'
+  Conclusion,
+  Fact
 }
+
+export type ProductionRule = {
+  facts: { name: string; value: string }[];
+  conclusion: string;
+};
 
 export type TreeNode = {
   name: string;

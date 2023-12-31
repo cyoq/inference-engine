@@ -3,12 +3,12 @@ import { NodeType, type TreeNode } from '../types';
 const treeData: TreeNode = {
   name: 'Outlook',
   edge: null,
-  type: NodeType.Condition,
+  type: NodeType.Fact,
   children: [
     {
       name: 'Humidity',
       edge: 'Sunny',
-      type: NodeType.Condition,
+      type: NodeType.Fact,
       children: [
         {
           name: 'Play?: Yes',
@@ -33,7 +33,7 @@ const treeData: TreeNode = {
     {
       name: 'Windy',
       edge: 'Rainy',
-      type: NodeType.Condition,
+      type: NodeType.Fact,
       children: [
         {
           name: 'Play?: Yes',
