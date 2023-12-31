@@ -7,7 +7,7 @@
 
   export let chartWidth: number = 660;
   export let chartHeight: number = 550;
-  export let rectWidth: number = 60;
+  export let rectWidth: number = 100;
   export let rectHeight: number = 30;
 
   // set the dimensions and margins of the diagram
