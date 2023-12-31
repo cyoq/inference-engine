@@ -7,6 +7,12 @@ export default class BackwardInference {
     this.data = data;
   }
 
+  getVisitedNodes(conclusion: string): TreeNode[] {
+    const paths = this.getPaths(conclusion);
+
+    return [...new Set(paths.flat())];
+  }
+
   getPaths(conclusion: string): TreeNode[][] {
     if (!this.getConclusions().includes(conclusion)) {
       throw new Error('Such conclusion does not exist!');
