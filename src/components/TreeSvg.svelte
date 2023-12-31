@@ -10,8 +10,6 @@
   export let rectWidth: number = 60;
   export let rectHeight: number = 30;
 
-  console.log('fw from tree', $forwardInference);
-
   // set the dimensions and margins of the diagram
   const margin = { top: 20, right: 90, bottom: 40, left: 90 };
   $: width = chartWidth - margin.left - margin.right;
@@ -53,8 +51,6 @@
   }
 </script>
 
-<p>{$forwardInference.currentNode.name}</p>
-
 <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
   <g transform="translate({margin.left},{margin.top})">
     <!-- Adds the links between the nodes -->
@@ -93,6 +89,11 @@
       <g
         class="node {node.children ? 'node-internal' : 'node-leaf'}"
         transform="translate({node.x - rectWidth / 2},{node.y})"
+        opacity={$forwardInference.hasInferenceStarted
+          ? $forwardInference.visitedNodes.includes(node.data)
+            ? 1
+            : 0.3
+          : 1}
       >
         <!-- Adds a shape to the node -->
         <rect
@@ -111,7 +112,9 @@
         >
       </g>
 
-      <Tooltip x={node.x} y={node.y} />
+      {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode === node.data}
+        <Tooltip x={node.x} y={node.y} />
+      {/if}
     {/each}
   </g>
 </svg>

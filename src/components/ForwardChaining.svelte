@@ -21,41 +21,60 @@
   </span>
 
   <div class="controls">
-    <button class="control-btn">Start inference</button>
-    <button class="control-btn" disabled>Clear inference</button>
+    <button
+      class="control-btn"
+      on:click={forwardInference.startInference}
+      disabled={$forwardInference.hasInferenceStarted}>Start inference</button
+    >
+    <button
+      class="control-btn"
+      on:click={forwardInference.reset}
+      disabled={!$forwardInference.hasInferenceStarted}>Clear inference</button
+    >
   </div>
 
-  <div class="question">
-    <pre>Question:</pre>
-    {question}
-  </div>
+  {#if $forwardInference.hasInferenceStarted}
+    <div class="question">
+      <pre>Question:</pre>
+      {$forwardInference.currentNode.name}?
+    </div>
+  {/if}
 
-  <div class="answer">
-    <pre>Answer:</pre>
+  {#if $forwardInference.hasInferenceStarted}
+    <div class="answer">
+      <pre>Answer:</pre>
 
-    {#each answers as answer, i}
-      <button style="background-color: var({answerColors[i % answerColors.length]})">
-        {answer}
-      </button>
-    {/each}
-  </div>
+      {#each $forwardInference.answers ?? [] as answer, i}
+        <button
+          style="background-color: var({answerColors[i % answerColors.length]})"
+          on:click={() => forwardInference.next(answer)}
+        >
+          {answer}
+        </button>
+      {/each}
+    </div>
+  {/if}
 
-  <div class="conclusion">
-    <pre>Conclusion:</pre>
-    {conclusion}
-  </div>
+  {#if $forwardInference.hasInferenceStarted}
+    <div class="conclusion">
+      <pre>Conclusion:</pre>
+      {conclusion}
+    </div>
+  {/if}
 
-  <div class="rules">
-    <h2>Production rules</h2>
-    {#each productionRules as rule}
-      <div class="rule">
-        <b>IF</b>
-        {rule.statement}
-        <b>THEN</b>
-        {rule.conclusion}
-      </div>
-    {/each}
-  </div>
+  {#if $forwardInference.hasInferenceStarted}
+    <div class="rules">
+      <h2>Production rules</h2>
+      {#each $forwardInference.productionRules as rule}
+        <div class="rule">
+          <b>IF</b>
+          {rule.facts.map((f) => `${f.name} = ${f.value}`).join(' AND ')}
+          <b>THEN</b>
+          {rule.conclusion}
+        </div>
+      {/each}
+    </div>
+  {/if}
 </div>
 
 <style>
