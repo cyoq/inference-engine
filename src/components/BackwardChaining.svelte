@@ -1,41 +1,47 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import { forwardInference } from '../store';
+  import { backwardInference, forwardInference } from '../store';
   import { NodeType } from '../types';
-  let answerColors = ['--chinese-violet', '--air-force-blue', '--asparagus', '--melon'];
+  let selectedConclusion: string;
 </script>
 
 <div class="container">
   <span>
-    Backward chaining helps to get other
-    <pre>conclusions</pre>
-    as well .
+    Backward chaining helps to get <pre>reasons</pre>
+    why a specific
+    <pre>conclusion</pre>
+    occurred.
   </span>
+
+  <div class="conclusion-choice">
+    <pre>Select a conclusion:</pre>
+    <select bind:value={selectedConclusion}>
+      {#each $backwardInference.conclusions as conclusion}
+        <option value={conclusion}>
+          {conclusion}
+        </option>
+      {/each}
+    </select>
+  </div>
 
   <div class="controls">
     <button
       class="control-btn"
-      on:click={forwardInference.startInference}
-      disabled={$forwardInference.hasInferenceStarted}>Start inference</button
+      on:click={() => backwardInference.startInference(selectedConclusion)}
+      disabled={selectedConclusion === '' || $backwardInference.hasInferenceStarted}
+      >Start inference</button
     >
     <button
       class="control-btn"
-      on:click={forwardInference.reset}
-      disabled={!$forwardInference.hasInferenceStarted}>Clear inference</button
+      on:click={backwardInference.reset}
+      disabled={!$backwardInference.hasInferenceStarted}>Clear inference</button
     >
   </div>
 
-  {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.type === NodeType.Conclusion}
-    <div class="conclusion" in:fade>
-      <pre>Conclusion:</pre>
-      {$forwardInference.currentNode.prompt}
-    </div>
-  {/if}
-
-  {#if $forwardInference.hasInferenceStarted}
+  {#if $backwardInference.hasInferenceStarted}
     <div class="rules">
       <h2>Production rules</h2>
-      {#each $forwardInference.productionRules as rule}
+      {#each $backwardInference.productionRules as rule}
         <div class="rule" in:fade>
           <b>IF</b>
           {rule.facts.map((f) => `${f.name} = ${f.value}`).join(' AND ')}
@@ -73,19 +79,20 @@
     background-color: #e0e0e0;
   }
 
-  .controls {
+  .controls,
+  .conclusion-choice {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     margin-right: auto;
     margin-left: 0;
   }
 
-  .conclusion {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    margin-right: auto;
-    margin-left: 0;
+  .conclusion-choice select {
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--orange);
   }
+
   .rule {
     font-size: 18px;
     margin-top: 0.5rem;

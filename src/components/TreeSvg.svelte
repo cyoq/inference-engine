@@ -3,7 +3,7 @@
   import treeData from '../data/tree-example';
   import { NodeType, type TreeNode } from '../types';
   import Tooltip from './Tooltip.svelte';
-  import { forwardInference } from '../store';
+  import { backwardInference, forwardInference } from '../store';
 
   export let chartWidth: number = 660;
   export let chartHeight: number = 550;
@@ -89,8 +89,9 @@
       <g
         class="node {node.children ? 'node-internal' : 'node-leaf'}"
         transform="translate({node.x - rectWidth / 2},{node.y})"
-        opacity={$forwardInference.hasInferenceStarted
-          ? $forwardInference.visitedNodes.includes(node.data)
+        opacity={$forwardInference.hasInferenceStarted || $backwardInference.hasInferenceStarted
+          ? $forwardInference.visitedNodes.includes(node.data) ||
+            $backwardInference.visitedNodes.includes(node.data)
             ? 1
             : 0.3
           : 1}
