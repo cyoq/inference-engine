@@ -1,18 +1,14 @@
-# create-svelte
+# Inference engine
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+An inference engine that implements both forward and backward chaining. It can be found in action on GitHub Pages: <https://cyoq.github.io/inference-engine/>
 
-## Creating a project
+This was a learning project. Inspirations were taken from the following sources:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Viewbox tweening: <https://svelte.dev/repl/7a7a8a2a90804516ae20ae37fa243e31?version=3.38.2>
+- Tab component: <https://svelte.dev/repl/cf05bd4a4ca14fb8ace8b6cdebbb58da?version=4.2.8>
+- D3.js Tree Layout: <https://codepen.io/augbog/pen/LEXZKK>
+- D3 Tree Layout: <https://codepen.io/blackjacques/pen/ZPMpza>
+- Connor Rotschild's blog and videos: <https://www.connorrothschild.com>
 
 ## Developing
 
@@ -25,6 +21,12 @@ npm run dev
 npm run dev -- --open
 ```
 
+Testing can be done with:
+
+```bash
+npm run test
+```
+
 ## Building
 
 To create a production version of your app:
@@ -35,4 +37,3 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
