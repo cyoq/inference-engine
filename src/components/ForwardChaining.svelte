@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { forwardInference } from '../store';
+
   let question = 'Is it outlook?';
   let answers = ['Sunny', 'Overcast', 'Rainy', 'Doom'];
   let answerColors = ['--chinese-violet', '--air-force-blue', '--asparagus', '--melon'];

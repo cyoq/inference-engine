@@ -3,11 +3,14 @@
   import treeData from '../data/tree-example';
   import { NodeType, type TreeNode } from '../types';
   import Tooltip from './Tooltip.svelte';
+  import { forwardInference } from '../store';
 
   export let chartWidth: number = 660;
   export let chartHeight: number = 550;
   export let rectWidth: number = 60;
   export let rectHeight: number = 30;
+
+  console.log('fw from tree', $forwardInference);
 
   // set the dimensions and margins of the diagram
   const margin = { top: 20, right: 90, bottom: 40, left: 90 };
@@ -49,6 +52,8 @@
     );
   }
 </script>
+
+<p>{$forwardInference.currentNode.name}</p>
 
 <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
   <g transform="translate({margin.left},{margin.top})">
