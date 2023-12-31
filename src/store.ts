@@ -1,6 +1,8 @@
 import { writable } from 'svelte/store';
 import ForwardInference from './inference/ForwardInference';
 import treeData from './data/tree-example';
+import BackwardInference from './inference/BackwardInference';
+import type { ProductionRule, TreeNode } from './types';
 
 let fwInference = new ForwardInference(treeData);
 
@@ -45,3 +47,45 @@ function createForwardInference() {
 }
 
 export const forwardInference = createForwardInference();
+
+let bwInference = new BackwardInference(treeData);
+
+function createBackwardInference() {
+  const { subscribe, set, update } = writable<{
+    currentNode: TreeNode;
+    conclusions: string[];
+    productionRules: ProductionRule[];
+    visitedNodes: TreeNode[];
+    hasInferenceStarted: boolean;
+  }>({
+    currentNode: bwInference.currentNode(),
+    conclusions: bwInference.getConclusions(),
+    productionRules: [],
+    visitedNodes: [],
+    hasInferenceStarted: false
+  });
+
+  return {
+    subscribe,
+    startInference: (conclusion: string) => {
+      update((o) => ({
+        ...o,
+        productionRules: bwInference.getProductionRules(conclusion),
+        visitedNodes: bwInference.getVisitedNodes(conclusion),
+        hasInferenceStarted: true
+      }));
+    },
+    reset: () => {
+      bwInference = new BackwardInference(treeData);
+      set({
+        currentNode: bwInference.currentNode(),
+        conclusions: bwInference.getConclusions(),
+        productionRules: [],
+        visitedNodes: [],
+        hasInferenceStarted: false
+      });
+    }
+  };
+}
+
+export const backwardInference = createBackwardInference();
