@@ -1,15 +1,7 @@
 <script lang="ts">
   import { forwardInference } from '../store';
-
-  let question = 'Is it outlook?';
-  let answers = ['Sunny', 'Overcast', 'Rainy', 'Doom'];
   let answerColors = ['--chinese-violet', '--air-force-blue', '--asparagus', '--melon'];
   let conclusion = 'Play?: Yes';
-
-  let productionRules = [
-    { statement: 'Outlook = Overcast', conclusion: 'Play?: Yes' },
-    { statement: 'Outlook = Overcast', conclusion: 'Play?: Yes' }
-  ];
 </script>
 
 <div class="container">
