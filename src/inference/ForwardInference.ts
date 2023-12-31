@@ -1,4 +1,4 @@
-import { NodeType, type ProductionRule, type TreeNode } from './types';
+import { NodeType, type ProductionRule, type TreeNode } from '../types';
 
 export default class ForwardInference {
   private data: TreeNode;

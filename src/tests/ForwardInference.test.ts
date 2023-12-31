@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import ForwardInference from '../ForwardInference';
+import ForwardInference from '../inference/ForwardInference';
 import treeData from '../data/tree-example';
 
 describe('ForwardInference.next', () => {

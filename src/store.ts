@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import ForwardInference from './ForwardInference';
+import ForwardInference from './inference/ForwardInference';
 import treeData from './data/tree-example';
 
 let fwInference = new ForwardInference(treeData);
