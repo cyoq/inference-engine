@@ -26,7 +26,7 @@
     >
   </div>
 
-  {#if $forwardInference.hasInferenceStarted}
+  {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.children}
     <div class="question" in:fade>
       <pre>Question:</pre>
       {$forwardInference.currentNode.name}?
