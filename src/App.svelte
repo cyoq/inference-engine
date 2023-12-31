@@ -30,7 +30,9 @@
 
   <Tabs {items} />
 
-  <footer>Check the code on the <a href="https://example.com">GitHub</a> 😉</footer>
+  <footer>
+    Check the code on the <a href="https://github.com/cyoq/inference-engine">GitHub</a> 😉
+  </footer>
 </main>
 
 <style>
