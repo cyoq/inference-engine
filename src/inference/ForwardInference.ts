@@ -35,10 +35,6 @@ export default class ForwardInference {
     return this.visitedNodes;
   }
 
-  isLeaf(): boolean {
-    return this.data.children === null;
-  }
-
   getProductionRules(): ProductionRule[] {
     const productionRules: ProductionRule[] = [];
 
