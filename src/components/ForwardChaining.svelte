@@ -61,7 +61,7 @@
       {#each $forwardInference.productionRules as rule}
         <div class="rule" in:fade>
           <b>IF</b>
-          {rule.facts.map((f) => `${f.name} = ${f.value}`).join(' AND ')}
+          {@html rule.facts.map((f) => `${f.name} = ${f.value}`).join(' <b>AND</b> ')}
           <b>THEN</b>
           {rule.conclusion}
         </div>
