@@ -1,13 +1,13 @@
 <script lang="ts">
   import * as d3 from 'd3';
-  import treeData from '../data/tree-example';
+  import treeData from '../data/tree';
   import { NodeType, type TreeNode } from '../types';
   import Tooltip from './Tooltip.svelte';
   import { backwardInference, forwardInference } from '../store';
 
   export let chartWidth: number = 660;
   export let chartHeight: number = 550;
-  export let rectWidth: number = 100;
+  export let rectWidth: number = 75;
   export let rectHeight: number = 30;
 
   // set the dimensions and margins of the diagram
@@ -123,15 +123,15 @@
 <style>
   .node rect {
     stroke: var(--chinese-violet);
-    stroke-width: 3px;
+    stroke-width: 2px;
   }
 
   .node text {
-    font: 12px sans-serif;
+    font: 9.5px sans-serif;
   }
 
   .node-edge text {
-    font: 12px sans-serif;
+    font: 10px sans-serif;
   }
   .link {
     fill: none;

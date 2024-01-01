@@ -6,7 +6,7 @@
   import type { TabItem } from './types';
 
   let width = 600;
-  let height = 400;
+  let height = 800;
 
   let items: TabItem[] = [
     { label: 'Forward', index: 1, component: ForwardChaining },

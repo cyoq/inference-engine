@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import ForwardInference from './inference/ForwardInference';
-import treeData from './data/tree-example';
+import treeData from './data/tree';
 import BackwardInference from './inference/BackwardInference';
 import type { ProductionRule, TreeNode } from './types';
 
