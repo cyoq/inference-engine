@@ -27,14 +27,14 @@
   </div>
 
   {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.question}
-    <div class="question" in:fade>
+    <div class="question" in:fade out:fade={{ duration: 100 }}>
       <pre>Question:</pre>
       {$forwardInference.currentNode.question}
     </div>
   {/if}
 
   {#if $forwardInference.hasInferenceStarted && ($forwardInference.answers ?? []).length > 0}
-    <div class="answer" in:fade>
+    <div class="answer" in:fade out:fade={{ duration: 100 }}>
       <pre>Answer:</pre>
 
       {#each $forwardInference.answers ?? [] as answer, i}
@@ -49,14 +49,14 @@
   {/if}
 
   {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.type === NodeType.Conclusion}
-    <div class="conclusion" in:fade>
+    <div class="conclusion" in:fade out:fade={{ duration: 100 }}>
       <pre>Conclusion:</pre>
       I think: {$forwardInference.currentNode.conclusion}
     </div>
   {/if}
 
   {#if $forwardInference.hasInferenceStarted}
-    <div class="rules">
+    <div class="rules" out:fade={{ duration: 100 }}>
       <h2>Production rules</h2>
       {#each $forwardInference.productionRules as rule}
         <div class="rule" in:fade>
