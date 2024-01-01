@@ -65,6 +65,14 @@ const treeData: TreeNode = {
                       type: NodeType.Fact,
                       children: [
                         {
+                          name: 'Great',
+                          edge: 'No',
+                          prompt: 'Have a nice day!',
+                          type: NodeType.Conclusion,
+                          children: null
+                        },
+
+                        {
                           name: 'Temperature OK?',
                           edge: 'Temperature',
                           prompt: 'Is temperature OK in the apartment?',
