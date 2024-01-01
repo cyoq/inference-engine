@@ -12,7 +12,7 @@
 
   // set the dimensions and margins of the diagram
   const margin = { top: 20, right: 90, bottom: 40, left: 90 };
-  $: width = chartWidth - margin.left - margin.right;
+  $: width = Math.max(chartWidth, 900) - margin.left - margin.right;
   $: height = chartHeight - margin.top - margin.bottom;
 
   $: treeMap = d3.tree<TreeNode>().size([width, height]);
