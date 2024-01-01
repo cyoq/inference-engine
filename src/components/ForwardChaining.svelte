@@ -51,7 +51,7 @@
   {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.type === NodeType.Conclusion}
     <div class="conclusion" in:fade>
       <pre>Conclusion:</pre>
-      {$forwardInference.currentNode.prompt}
+      I think: {$forwardInference.currentNode.prompt}
     </div>
   {/if}
 

@@ -15,14 +15,14 @@ const treeData: TreeNode = {
         {
           name: 'Play?: Yes',
           edge: 'Normal',
-          prompt: 'I think it is safe to play',
+          prompt: 'It is safe to play',
           type: NodeType.Conclusion,
           children: null
         },
         {
           name: 'Play?: No',
           edge: 'High',
-          prompt: 'I think it is better not to play',
+          prompt: 'It is better not to play',
           type: NodeType.Conclusion,
           children: null
         }
@@ -31,7 +31,7 @@ const treeData: TreeNode = {
     {
       name: 'Play?: Yes',
       edge: 'Overcast',
-      prompt: 'I think it is safe to play',
+      prompt: 'It is safe to play',
       type: NodeType.Conclusion,
       children: null
     },
@@ -44,14 +44,14 @@ const treeData: TreeNode = {
         {
           name: 'Play?: Yes',
           edge: 'False',
-          prompt: 'I think it is safe to play',
+          prompt: 'It is safe to play',
           type: NodeType.Conclusion,
           children: null
         },
         {
           name: 'Play?: No',
           edge: 'True',
-          prompt: 'I think it is better not to play',
+          prompt: 'It is better not to play',
           type: NodeType.Conclusion,
           children: null
         }
