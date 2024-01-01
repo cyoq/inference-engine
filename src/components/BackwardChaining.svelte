@@ -15,7 +15,7 @@
   <div class="conclusion-choice">
     <pre>Select a conclusion:</pre>
     <select bind:value={selectedConclusion}>
-      {#each $backwardInference.conclusions as conclusion}
+      {#each $backwardInference.conclusions.sort() as conclusion}
         <option value={conclusion}>
           {conclusion}
         </option>

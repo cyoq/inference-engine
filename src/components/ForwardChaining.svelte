@@ -26,10 +26,10 @@
     >
   </div>
 
-  {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.children}
+  {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.question}
     <div class="question" in:fade>
       <pre>Question:</pre>
-      {$forwardInference.currentNode.prompt}
+      {$forwardInference.currentNode.question}
     </div>
   {/if}
 
@@ -51,7 +51,7 @@
   {#if $forwardInference.hasInferenceStarted && $forwardInference.currentNode.type === NodeType.Conclusion}
     <div class="conclusion" in:fade>
       <pre>Conclusion:</pre>
-      I think: {$forwardInference.currentNode.prompt}
+      I think: {$forwardInference.currentNode.conclusion}
     </div>
   {/if}
 
