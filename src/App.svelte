@@ -24,6 +24,15 @@
     chaining execution</span
   >
 
+  <span
+    >Below you can find a decision tree chart rectangles represent <pre>conclusions</pre>
+    😎 , ellipses represent
+    <pre>facts</pre>
+    🥸</span
+  >
+
+  <span><pre>Have a nice inference!</pre></span>
+
   <TreeSvg chartWidth={width} chartHeight={height} />
 
   <h2>Chaining ⛓️</h2>
@@ -80,5 +89,10 @@
   a {
     color: #ff3e00;
     text-decoration: inherit;
+  }
+
+  span {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
   }
 </style>
