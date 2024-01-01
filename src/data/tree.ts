@@ -75,15 +75,6 @@ const treeData: TreeNode = {
                       type: NodeType.Fact,
                       children: [
                         {
-                          name: 'Great',
-                          edge: 'No',
-                          question: null,
-                          conclusion: 'Have a nice day!',
-                          type: NodeType.Conclusion,
-                          children: null
-                        },
-
-                        {
                           name: 'Temperature OK?',
                           edge: 'Temperature',
                           question: 'Is temperature OK in the apartment?',
@@ -107,6 +98,14 @@ const treeData: TreeNode = {
                               children: null
                             }
                           ]
+                        },
+                        {
+                          name: 'Great!',
+                          edge: 'No',
+                          question: null,
+                          conclusion: 'Have a nice day!',
+                          type: NodeType.Conclusion,
+                          children: null
                         },
                         {
                           name: 'Humidity OK?',
