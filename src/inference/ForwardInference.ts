@@ -10,7 +10,7 @@ export default class ForwardInference {
   }
 
   next(edge: string) {
-    if (this.getEdges()?.find((e) => e == edge) === undefined) {
+    if (this.getEdges()?.find((e) => e === edge) === undefined) {
       throw new Error('No such edge was found');
     }
 
@@ -56,7 +56,7 @@ export default class ForwardInference {
 
           productionRule.conclusion = node.name;
           productionRules.push(productionRule);
-          productionRule = { facts: [], conclusion: '' };
+          productionRule = { facts: [{ name: node.name, value: '' }], conclusion: '' };
           break;
         default:
           throw new Error('Non-existent key for NodeType');

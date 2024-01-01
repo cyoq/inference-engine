@@ -86,7 +86,7 @@ export default class BackwardInference {
 
             productionRule.conclusion = node.name;
             productionRules.push(productionRule);
-            productionRule = { facts: [], conclusion: '' };
+            productionRule = { facts: [{ name: node.name, value: '' }], conclusion: '' };
             break;
           default:
             throw new Error('Non-existent key for NodeType');
