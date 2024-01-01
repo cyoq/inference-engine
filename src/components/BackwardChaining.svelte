@@ -1,7 +1,6 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import { backwardInference, forwardInference } from '../store';
-  import { NodeType } from '../types';
+  import { backwardInference } from '../store';
   let selectedConclusion: string;
 </script>
 
@@ -41,12 +40,14 @@
   {#if $backwardInference.hasInferenceStarted}
     <div class="rules" in:fade out:fade>
       <h2>Production rules</h2>
-      {#each $backwardInference.productionRules as rule}
+      {#each Map.groupBy($backwardInference.productionRules, (r) => r.conclusion) as [conclusion, rules]}
         <div class="rule" in:fade>
           <b>IF</b>
-          {@html rule.facts.map((f) => `${f.name} = ${f.value}`).join(' <b>AND</b> ')}
+          {@html rules
+            .map((r) => `(${r.facts.map((f) => `${f.name} = ${f.value}`).join(' <b>AND</b> ')})`)
+            .join(' <b>OR</b> ')}
           <b>THEN</b>
-          {rule.conclusion}
+          {conclusion}
         </div>
       {/each}
     </div>
