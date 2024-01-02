@@ -48,7 +48,7 @@ const treeData: TreeNode = {
                   name: 'Send alert',
                   edge: '> 5 min',
                   question: null,
-                  conclusion: 'Person has not come in. Sending an alert.',
+                  conclusion: 'Person has not come in. Sending an alert to owner.',
                   type: NodeType.Conclusion,
                   children: null
                 },
@@ -118,7 +118,7 @@ const treeData: TreeNode = {
                               name: 'Use air dryer',
                               edge: 'High',
                               question: null,
-                              conclusion: 'Use air dryer to lessen the humidity.',
+                              conclusion: 'Use air dryer to lessen humidity.',
                               type: NodeType.Conclusion,
                               children: null
                             },
@@ -126,7 +126,7 @@ const treeData: TreeNode = {
                               name: 'Use air humidifier',
                               edge: 'Low',
                               question: null,
-                              conclusion: 'Use air humidifier to inc the humidity.',
+                              conclusion: 'Use air humidifier to increase humidity.',
                               type: NodeType.Conclusion,
                               children: null
                             }
